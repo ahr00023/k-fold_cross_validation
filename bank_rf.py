@@ -53,7 +53,7 @@ model = RandomForestClassifier(n_estimators=100)
 k = 10
 # Perform k-fold cross-validation on the training data
 kf = KFold(n_splits=k, shuffle=True, random_state=42)
-start_train_time = time.time()
+
 scores = cross_val_score(model, X_train, y_train, cv=kf)
 
 

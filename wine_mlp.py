@@ -27,11 +27,7 @@ start_train_time = time.time()
 scores = cross_val_score(model, X_train, y_train, cv=kf)
 end_train_time = time.time()
 
-# Print the accuracy scores for each fold
-for fold, score in enumerate(scores):
-    print(f"Fold {fold + 1}: Accuracy = {score}")
 
-# Calculate the training time
 train_time = end_train_time - start_train_time
 
 # Fit the MLP model on the entire training data

@@ -54,7 +54,7 @@ model =  MLPClassifier(hidden_layer_sizes=(100,), max_iter=5000)
 k = 10
 # Perform k-fold cross-validation on the training data
 kf = KFold(n_splits=k, shuffle=True, random_state=42)
-start_train_time = time.time()
+
 scores = cross_val_score(model, X_train, y_train, cv=kf)
 
 
@@ -65,8 +65,7 @@ for fold, score in enumerate(scores):
 # Calculate the training time
 
 
-# Fit the Random Forest model on the entire training data
-
+start_train_time = time.time()
 model.fit(X_train, y_train)
 end_train_time = time.time()
 train_time = end_train_time - start_train_time

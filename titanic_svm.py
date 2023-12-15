@@ -45,25 +45,24 @@ k = 5
 
 # Perform k-fold cross-validation on the training data
 kf = KFold(n_splits=k, shuffle=True, random_state=42)
-start_train_time = time.time()
-scores = cross_val_score(model, X_train_scaled, y_train, cv=kf)
-end_train_time = time.time()
 
-# Print the accuracy scores for each fold
-for fold, score in enumerate(scores):
-    print(f"Fold {fold + 1}: Accuracy = {score}")
+scores = cross_val_score(model, X_train_scaled, y_train, cv=kf)
+
+
+# Fit the SVM model on the entire training data
+
+start_train_time = time.time()
+model.fit(X_train_scaled, y_train)
+end_train_time = time.time()
 
 # Calculate the training time
 train_time = end_train_time - start_train_time
 
-# Fit the SVM model on the entire training data
-start_test_time = time.time()
-model.fit(X_train_scaled, y_train)
-end_test_time = time.time()
 
+start_test_time = time.time()
 # Predict the labels for the test data
 y_pred = model.predict(X_test_scaled)
-
+end_test_time = time.time()
 # Calculate the testing time
 test_time = end_test_time - start_test_time
 
